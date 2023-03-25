@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/conditions
 /.pnp
 .pnp.js
 
