@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CustomSelect } from "./CustomSelect";
 import { Search } from "./Search";
 import styled from "styled-components";
@@ -22,9 +22,14 @@ const Wrapper = styled.div`
     align-items: center;
   }
 `;
-export const Controls = () => {
+export const Controls = ({ onSearch }) => {
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("");
+
+  useEffect(() => {
+    const regionName = region?.value || "";
+    onSearch(search, regionName);
+  }, [search, region]);
 
   return (
     <Wrapper>

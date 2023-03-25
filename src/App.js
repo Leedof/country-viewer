@@ -1,49 +1,36 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Header } from "./components/Header";
 import { Main } from "./components/Main";
-import { Controls } from "./components/Controls";
-import { ALL_COUNTRIES } from "./config";
-import { List } from "./components/List";
-import { Card } from "./components/Card";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  Outlet,
+} from "react-router-dom";
+//Pages
+import { Home } from "./pages/Home";
+import { Details } from "./pages/Details";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
   const [countries, setCountries] = useState([]);
-  console.log(countries);
-  useEffect(() => {
-    axios.get(ALL_COUNTRIES).then(({ data }) => setCountries(data));
-  }, []);
+
   return (
     <>
       <Header />
       <Main>
-        <Controls />
-        <List>
-          {countries.map((country) => {
-            const countryInfo = {
-              img: country.flags.png,
-              name: country.name.official,
-              info: [
-                {
-                  title: "Population",
-                  description: country.population.toLocaleString(),
-                },
-                {
-                  title: "Region",
-                  description: country.region,
-                },
-                {
-                  title: "Capital",
-                  description: country.capital,
-                },
-              ],
-            };
-            return <Card key={country.name.official} {...countryInfo} />;
-          })}
-        </List>
+        <Outlet context={[countries, setCountries]} />
       </Main>
     </>
   );
 }
 
-export default App;
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route index element={<Home />} />
+      <Route path="country/:name" element={<Details />} />
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  )
+);
