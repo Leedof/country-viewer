@@ -53,4 +53,14 @@ export const selectCountriesInfo = (state) => ({
 });
 export const selectAllCountries = (state) => state.countries.list;
 
-// export const selectFilteredCountries ;
+export const selectFilteredCountries = (
+  state,
+  { search = '', region = '' }
+) => {
+  return state.countries.list.filter((country) => {
+    return (
+      country.name.common.toLowerCase().includes(search.toLowerCase()) &&
+      country.region.includes(region)
+    );
+  });
+};

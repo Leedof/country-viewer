@@ -16,8 +16,8 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './assets/Theme';
 
 function App() {
-  const [countries, setCountries] = useState([]);
   const [theme, setTheme] = useState('light');
+
   const switchTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
@@ -28,7 +28,7 @@ function App() {
         <GlobalStyles />
         <Header theme={theme} switchTheme={switchTheme} />
         <Main>
-          <Outlet context={[countries, setCountries]} />
+          <Outlet />
         </Main>
       </ThemeProvider>
     </>
