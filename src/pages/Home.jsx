@@ -12,6 +12,8 @@ export const Home = () => {
   const navigate = useNavigate();
   const [countries, setCountries] = useOutletContext();
   const [filteredCountries, setfilteredCountries] = useState([]);
+  const [shownCountries, setShownCountries] = useState([]);
+  const [shownAmount, setShownAmount] = useState(12);
 
   const onSearch = (search, region) => {
     let data = [...countries];
@@ -25,27 +27,52 @@ export const Home = () => {
       );
     }
     setfilteredCountries(data);
+    setShownCountries(data.slice(0, shownAmount));
   };
 
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setShownAmount((prev) => {
+        if (prev <= filteredCountries.length) return prev + 12;
+        return prev;
+      });
+    }
+  };
+
+  useEffect(() => {
+    setShownCountries(filteredCountries.slice(0, shownAmount));
+  }, [shownAmount, filteredCountries]);
+
+  // Scroll on Home page
+  useEffect(() => {
+    if (filteredCountries.length) {
+      window.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [filteredCountries]);
+
+  //First render with fetching
   useEffect(() => {
     if (!countries.length) {
       axios.get(ALL_COUNTRIES).then(({ data }) => {
         setCountries(data);
+        setfilteredCountries(data);
+        setShownCountries(data.slice(0, shownAmount));
       });
     }
   }, []);
-
-  useEffect(() => {
-    if (!filteredCountries.length) {
-      setfilteredCountries(countries);
-    }
-  }, [countries]);
 
   return (
     <>
       <Controls onSearch={onSearch} />
       <List>
-        {filteredCountries.map((country) => {
+        {shownCountries.map((country) => {
           const countryInfo = {
             img: country.flags.png,
             name: country.name.official,
