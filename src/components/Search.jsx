@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { IoSearch } from "react-icons/io5";
+import styled from 'styled-components';
+import { IoSearch } from 'react-icons/io5';
 
 const InputContainer = styled.label`
   background-color: ${({ theme }) => theme.colors.uiBase};
@@ -22,8 +22,8 @@ const InputContainer = styled.label`
 `;
 
 const Input = styled.input.attrs({
-  type: "search",
-  placeholder: "Enter country name",
+  type: 'search',
+  placeholder: 'Enter country name',
 })`
   margin-left: 2rem;
   overflow: hidden;

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Select from "react-select";
+import Select from 'react-select';
 
 export const CustomSelect = styled(Select).attrs(({ theme }) => ({
   styles: {
@@ -9,14 +9,14 @@ export const CustomSelect = styled(Select).attrs(({ theme }) => ({
       backgroundColor: theme.colors.uiBase,
       color: theme.colors.text,
       borderRadius: theme.radius,
-      padding: "0.25rem",
-      border: "none",
+      padding: '0.25rem',
+      border: 'none',
       boxShadow: theme.shadow,
-      height: "50px",
+      height: '50px',
     }),
     option: (provided, state) => ({
       ...provided,
-      cursor: "pointer",
+      cursor: 'pointer',
       color: theme.colors.text,
       backgroundColor: state.isSelected
         ? theme.colors.bg

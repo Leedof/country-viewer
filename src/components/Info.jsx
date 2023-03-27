@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { filterByCode } from "../config";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { filterByCode } from '../config';
 
 const Wrapper = styled.section`
   display: grid;
@@ -91,37 +91,37 @@ const parseCountryData = (data) => {
     flag: data.flags.png,
     mainInfo: [
       {
-        title: "Native Name",
-        value: Object.values(data.name.nativeName)[0]["common"],
+        title: 'Native Name',
+        value: Object.values(data.name.nativeName)[0]['common'],
       },
       {
-        title: "Population",
+        title: 'Population',
         value: data.population.toLocaleString(),
       },
       {
-        title: "Region",
+        title: 'Region',
         value: data.region,
       },
       {
-        title: "Sub Region",
+        title: 'Sub Region',
         value: data.subregion,
       },
       {
-        title: "Capital",
-        value: data.capital.join(", "),
+        title: 'Capital',
+        value: data.capital.join(', '),
       },
     ],
     otherInfo: [
       {
-        title: "Currencies",
+        title: 'Currencies',
         value: Object.values(data.currencies)[0].name,
       },
       {
-        title: "Languages",
-        value: Object.values(data.languages).join(", "),
+        title: 'Languages',
+        value: Object.values(data.languages).join(', '),
       },
       {
-        title: "Area",
+        title: 'Area',
         value: data.area.toLocaleString(),
       },
     ],
@@ -154,7 +154,7 @@ export const Info = ({ country }) => {
           <List>
             {mainInfo.map((el) => (
               <ListItem key={el.title}>
-                <b>{el.title + ": "}</b>
+                <b>{el.title + ': '}</b>
                 {el.value}
               </ListItem>
             ))}
@@ -162,7 +162,7 @@ export const Info = ({ country }) => {
           <List>
             {otherInfo.map((el) => (
               <ListItem key={el.title}>
-                <b>{el.title + ": "}</b>
+                <b>{el.title + ': '}</b>
                 {el.value}
               </ListItem>
             ))}
@@ -172,9 +172,9 @@ export const Info = ({ country }) => {
           <span>Border countries:</span>
           <div>
             {borders.length === 0
-              ? "None"
+              ? 'None'
               : borderCountries.map((el) => (
-                  <BorderListItem key={el} to={"/country/" + el}>
+                  <BorderListItem key={el} to={'/country/' + el}>
                     {el}
                   </BorderListItem>
                 ))}

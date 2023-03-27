@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-import { Controls } from "../components/Controls";
-import { List } from "../components/List";
-import { Card } from "./../components/Card";
+import { Controls } from '../components/Controls';
+import { List } from '../components/List';
+import { Card } from './../components/Card';
 
-import { ALL_COUNTRIES } from "../config";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { ALL_COUNTRIES } from '../config';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -49,11 +49,11 @@ export const Home = () => {
   // Scroll on Home page
   useEffect(() => {
     if (filteredCountries.length) {
-      window.addEventListener("scroll", handleScroll);
+      window.addEventListener('scroll', handleScroll);
     }
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [filteredCountries]);
 
@@ -78,15 +78,15 @@ export const Home = () => {
             name: country.name.official,
             info: [
               {
-                title: "Population",
+                title: 'Population',
                 description: country.population.toLocaleString(),
               },
               {
-                title: "Region",
+                title: 'Region',
                 description: country.region,
               },
               {
-                title: "Capital",
+                title: 'Capital',
                 description: country.capital,
               },
             ],
@@ -94,7 +94,7 @@ export const Home = () => {
           return (
             <Card
               key={country.name.common}
-              onClick={() => navigate("/country/" + country.name.common)}
+              onClick={() => navigate('/country/' + country.name.common)}
               {...countryInfo}
             />
           );

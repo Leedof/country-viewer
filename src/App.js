@@ -1,30 +1,30 @@
-import { useState } from "react";
-import { Header } from "./components/Header";
-import { Main } from "./components/Main";
+import { useState } from 'react';
+import { Header } from './components/Header';
+import { Main } from './components/Main';
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   Outlet,
-} from "react-router-dom";
+} from 'react-router-dom';
 //Pages
-import { Home } from "./pages/Home";
-import { Details } from "./pages/Details";
-import { NotFound } from "./pages/NotFound";
-import { GlobalStyles } from "./assets/GlobalStyles";
-import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "./assets/Theme";
+import { Home } from './pages/Home';
+import { Details } from './pages/Details';
+import { NotFound } from './pages/NotFound';
+import { GlobalStyles } from './assets/GlobalStyles';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './assets/Theme';
 
 function App() {
   const [countries, setCountries] = useState([]);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState('light');
   const switchTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   return (
     <>
-      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
         <Header theme={theme} switchTheme={switchTheme} />
         <Main>
