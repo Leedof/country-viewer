@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { IoMoonOutline, IoMoon } from "react-icons/io5";
 
@@ -31,22 +30,13 @@ const ThemeSwitcher = styled.div`
   text-transform: capitalize;
 `;
 
-export const Header = () => {
-  const [theme, setTheme] = useState("light");
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
-  useEffect(() => {
-    document.body.setAttribute("data-theme", theme);
-  }, [theme]);
-
+export const Header = ({ theme, switchTheme }) => {
   return (
     <HeaderEl>
       <Container>
         <Wrapper>
           <Title>Where is my contry?</Title>
-          <ThemeSwitcher onClick={toggleTheme}>
+          <ThemeSwitcher onClick={switchTheme}>
             {theme === "light" ? (
               <IoMoonOutline size="14px" />
             ) : (
