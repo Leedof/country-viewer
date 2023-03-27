@@ -30,9 +30,9 @@ const InfoImg = styled.img`
 `;
 const InfoTitle = styled.h2`
   margin: 0;
-  color: var(--color-text);
-  font-weight: var(--fw-bold);
-  font-size: 32px;
+  color: ${({ theme }) => theme.colors.text};
+  font-weight: ${({ theme }) => theme.fw.bold};
+  font-size: ${({ theme }) => theme.fs.heading};
 `;
 const InfoLists = styled.div`
   display: grid;
@@ -49,10 +49,10 @@ const List = styled.ul`
   padding: 0;
 `;
 const ListItem = styled.li`
-  color: var(--color-text);
-  font-size: var(--fs-sm);
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${({ theme }) => theme.fs.small};
   & > b {
-    font-weight: var(--fw-normal);
+    font-weight: ${({ theme }) => theme.fw.normal};
   }
   &:not(:last-child) {
     margin-bottom: 0.5rem;
@@ -65,7 +65,7 @@ const BordersList = styled.div`
   width: 100%;
 
   & > span {
-    font-weight: var(--fw-bold);
+    font-weight: ${({ theme }) => theme.fw.bold};
   }
   & > div {
     display: flex;
@@ -78,12 +78,12 @@ const BordersList = styled.div`
 `;
 const BorderListItem = styled(Link)`
   display: inline-block;
-  background-color: var(--colors-ui-base);
+  background-color: ${({ theme }) => theme.colors.uiBase};
   padding: 0 1rem;
   line-height: 1.5;
   text-decoration: none;
-  box-shadow: var(--shadow);
-  color: var(--color-text);
+  box-shadow: ${({ theme }) => theme.shadow};
+  color: ${({ theme }) => theme.colors.text};
 `;
 const parseCountryData = (data) => {
   return {

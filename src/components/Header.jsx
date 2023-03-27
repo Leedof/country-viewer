@@ -4,8 +4,8 @@ import { IoMoonOutline, IoMoon } from "react-icons/io5";
 import { Container } from "./Container";
 
 const HeaderEl = styled.header`
-  box-shadow: var(--shadow);
-  background-color: var(--colors-ui-base);
+  box-shadow: ${({ theme }) => theme.shadow};
+  background-color: ${({ theme }) => theme.colors.uiBase};
 `;
 
 const Wrapper = styled.div`
@@ -16,17 +16,17 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.a.attrs({ href: "/" })`
-  color: var(--colors-text);
-  font-size: var(--fs-sm);
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${({ theme }) => theme.fs.small};
   text-decoration: none;
-  font-weight: var(--fw-bold);
+  font-weight: ${({ theme }) => theme.fw.bold};
 `;
 
 const ThemeSwitcher = styled.div`
-  color: var(--colors-text);
-  font-size: var(--fs-sm);
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${({ theme }) => theme.fs.small};
   cursor: pointer;
-  font-weight: var(--fw-bold);
+  font-weight: ${({ theme }) => theme.fw.bold};
   text-transform: capitalize;
 `;
 
@@ -38,9 +38,9 @@ export const Header = ({ theme, switchTheme }) => {
           <Title>Where is my contry?</Title>
           <ThemeSwitcher onClick={switchTheme}>
             {theme === "light" ? (
-              <IoMoonOutline size="14px" />
+              <IoMoonOutline size="16px" />
             ) : (
-              <IoMoon size="14px" />
+              <IoMoon size="16px" />
             )}
             <span style={{ marginLeft: "0.75rem" }}>{theme} Theme</span>
           </ThemeSwitcher>

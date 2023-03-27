@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  border-radius: var(--radius);
+  border-radius: ${({ theme }) => theme.radius};
   cursor: pointer;
   overflow: hidden;
-  box-shadow: var(--shadow);
-  background-color: var(--colors-ui-base);
+  box-shadow: ${({ theme }) => theme.shadow};
+  background-color: ${({ theme }) => theme.colors.uiBase};
 `;
 
 const CardImage = styled.img.attrs()`
@@ -14,7 +14,7 @@ const CardImage = styled.img.attrs()`
   height: 150px;
   object-fit: cover;
   object-position: center;
-  box-shadow: var(--shadow);
+  box-shadow: ${({ theme }) => theme.shadow};
 `;
 
 const CardBody = styled.div`
@@ -23,8 +23,8 @@ const CardBody = styled.div`
 
 const CardTitle = styled.h3`
   margin: 0;
-  font-size: var(--fs-md);
-  font-weight: var(--fw-bold);
+  font-size: ${({ theme }) => theme.fs.normal};
+  font-weight: ${({ theme }) => theme.fw.bold};
 `;
 
 const CardList = styled.ul`
@@ -34,11 +34,12 @@ const CardList = styled.ul`
 `;
 
 const CardListItem = styled.li`
-  font-size: var(--fs-sm);
+  font-size: ${({ theme }) => theme.fs.small};
   line-height: 1.5;
-  font-weight: var(--fw-light);
+  font-weight: ${({ theme }) => theme.fw.light};
+
   & > b {
-    font-weight: var(--fw-bold);
+    font-weight: ${({ theme }) => theme.fw.bold};
   }
 `;
 

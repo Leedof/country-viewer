@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { IoSearch } from "react-icons/io5";
 
 const InputContainer = styled.label`
-  background-color: var(--colors-ui-base);
+  background-color: ${({ theme }) => theme.colors.uiBase};
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
 
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border-radius: ${({ theme }) => theme.radius};
+  box-shadow: ${({ theme }) => theme.shadow};
   width: 100%;
   margin-bottom: 1.5rem;
   & svg {
@@ -29,8 +29,8 @@ const Input = styled.input.attrs({
   overflow: hidden;
   border: none;
   outline: none;
-  background-color: var(--colors-ui-base);
-  color: var(--colors-text);
+  background-color: ${({ theme }) => theme.colors.uiBase};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const Search = ({ search, setSearch }) => {
