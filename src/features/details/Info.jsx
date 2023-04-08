@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { filterByCode } from '../config';
+import { useNeighbors } from './use-neighbors';
 
 const Wrapper = styled.section`
   display: grid;
@@ -85,65 +83,10 @@ const BorderListItem = styled(Link)`
   box-shadow: ${({ theme }) => theme.shadow};
   color: ${({ theme }) => theme.colors.text};
 `;
-const parseCountryData = (data) => {
-  return {
-    name: data.name.common,
-    flag: data.flags.png,
-    mainInfo: [
-      {
-        title: 'Native Name',
-        value: Object.values(data.name.nativeName)[0]['common'],
-      },
-      {
-        title: 'Population',
-        value: data.population.toLocaleString(),
-      },
-      {
-        title: 'Region',
-        value: data.region,
-      },
-      {
-        title: 'Sub Region',
-        value: data.subregion,
-      },
-      {
-        title: 'Capital',
-        value: data.capital.join(', '),
-      },
-    ],
-    otherInfo: [
-      {
-        title: 'Currencies',
-        value: Object.values(data.currencies)[0].name,
-      },
-      {
-        title: 'Languages',
-        value: Object.values(data.languages).join(', '),
-      },
-      {
-        title: 'Area',
-        value: data.area.toLocaleString(),
-      },
-    ],
-    borders: data?.borders || [],
-  };
-};
 
-export const Info = ({ country }) => {
-  const [borderCountries, setBorderCountries] = useState([]);
-
-  const { name, flag, mainInfo, otherInfo, borders } =
-    parseCountryData(country);
-
-  useEffect(() => {
-    if (borders.length)
-      axios.get(filterByCode(borders)).then(({ data }) => {
-        const borderCountries = data.map((el) => {
-          return el.name.common;
-        });
-        setBorderCountries(borderCountries);
-      });
-  }, []);
+export const Info = ({ currentCountry }) => {
+  const { name, flag, mainInfo, otherInfo, borders } = currentCountry;
+  const neighbors = useNeighbors(borders);
 
   return (
     <Wrapper>
@@ -171,9 +114,9 @@ export const Info = ({ country }) => {
         <BordersList>
           <span>Border countries:</span>
           <div>
-            {borders.length === 0
+            {neighbors.length === 0
               ? 'None'
-              : borderCountries.map((el) => (
+              : neighbors.map((el) => (
                   <BorderListItem key={el} to={'/country/' + el}>
                     {el}
                   </BorderListItem>

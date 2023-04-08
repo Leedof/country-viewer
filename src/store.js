@@ -4,11 +4,13 @@ import * as api from './config';
 
 import { countriesReducer } from './features/countries/countries-slice';
 import { controlsReducer } from './features/controls/controls-slice';
+import { detailsReducer } from './features/details/details-slice';
 
 export const store = configureStore({
   reducer: {
     countries: countriesReducer,
     controls: controlsReducer,
+    details: detailsReducer,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>
