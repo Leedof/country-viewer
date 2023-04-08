@@ -4,6 +4,16 @@ export const loadCountryByName = createAsyncThunk(
   '@@details/load-country-by-name',
   (name, { extra: { client, api } }) => {
     return client.get(api.searchByCountry(name));
+  },
+  {
+    condition: (_, { getState }) => {
+      const {
+        details: { status },
+      } = getState();
+      if (status === 'loading') {
+        return false;
+      }
+    },
   }
 );
 export const loadNeighborsByBorder = createAsyncThunk(
@@ -23,11 +33,7 @@ const initialState = {
 const detailsSlice = createSlice({
   name: '@@details',
   initialState,
-  reducers: {
-    clearDetails() {
-      return initialState;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) =>
     builder
       .addCase(loadCountryByName.pending, (state) => {
@@ -47,7 +53,6 @@ const detailsSlice = createSlice({
       }),
 });
 
-export const { clearDetails } = detailsSlice.actions;
 export const detailsReducer = detailsSlice.reducer;
 
 //Selectors
