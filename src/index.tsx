@@ -6,7 +6,9 @@ import { router } from './App';
 import { Provider } from 'react-redux';
 import { store } from './store';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById('root') as HTMLDivElement;
+const root = ReactDOM.createRoot(rootElement);
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>

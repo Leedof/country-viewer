@@ -14,19 +14,16 @@ import { NotFound } from './pages/NotFound';
 import { GlobalStyles } from './assets/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './assets/Theme';
+import { useTheme } from 'features/theme/use-theme';
 
 function App() {
-  const [theme, setTheme] = useState('light');
-
-  const switchTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+  const [theme] = useTheme();
 
   return (
     <>
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
-        <Header theme={theme} switchTheme={switchTheme} />
+        <Header />
         <Main>
           <Outlet />
         </Main>

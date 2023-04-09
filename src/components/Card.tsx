@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CountryInfo } from 'types';
 
 const Wrapper = styled.div`
   border-radius: ${({ theme }) => theme.radius};
@@ -8,7 +9,7 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.uiBase};
 `;
 
-const CardImage = styled.img.attrs()`
+const CardImage = styled.img`
   display: block;
   width: 100%;
   height: 150px;
@@ -42,8 +43,10 @@ const CardListItem = styled.li`
     font-weight: ${({ theme }) => theme.fw.bold};
   }
 `;
-
-export const Card = ({ img, name, info = [], onClick }) => {
+interface CardProps extends CountryInfo {
+  onClick: () => void;
+}
+export const Card = ({ img, name, info = [], onClick }: CardProps) => {
   return (
     <Wrapper onClick={onClick}>
       <CardImage src={img} alt={name} />
