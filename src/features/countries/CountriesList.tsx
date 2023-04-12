@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 
-import { Card } from '../../components/Card';
-import { List } from './../../components/List';
 import { useCountries } from './use-countries';
+import { List } from 'components/List';
+import { Card } from 'components/Card';
+import { CountryInfo } from 'types';
 
 export const CountriesList = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export const CountriesList = () => {
       {status === 'received' && (
         <List>
           {countries.map((country) => {
-            const countryInfo = {
+            const countryInfo: CountryInfo = {
               img: country.flags.png,
               name: country.name.official,
               info: [

@@ -1,14 +1,12 @@
 import { Regions } from './regions';
 
 type Name = {
-  name: {
-    common: string;
-    official: string;
-    nativeName: {
-      [key: string]: {
-        common: string;
-        official: string;
-      };
+  common: string;
+  official: string;
+  nativeName: {
+    [key: string]: {
+      common: string;
+      official: string;
     };
   };
 };
@@ -40,7 +38,7 @@ export type Country = {
 
 type Info = {
   title: string;
-  description: string;
+  description: string | string[];
 };
 export type CountryInfo = {
   img: string;
