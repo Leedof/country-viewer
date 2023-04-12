@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTheme, switchTheme } from './theme-slice';
+import { Theme, switchTheme } from './theme-slice';
+import { selectTheme } from './theme-selectors';
 
-export const useTheme = () => {
+export const useTheme = (): [Theme, () => void] => {
   const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
 
