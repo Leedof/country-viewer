@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Country, Status } from 'types';
-import { Extra } from 'types/extra';
+import { Country, Status, Extra } from 'types';
 
 //Types for asyncThunk< Return type , first agrument to payload creator, thunkApi config>
 // state: { countries: CountrySlice }; is done to handle getState in conditions

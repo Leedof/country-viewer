@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useNeighbors } from './use-neighbors';
+import { Details } from 'types';
 
 const Wrapper = styled.section`
   display: grid;
@@ -84,7 +85,11 @@ const BorderListItem = styled(Link)`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const Info = ({ currentCountry }) => {
+interface IInfo {
+  currentCountry: Details;
+}
+
+export const Info = ({ currentCountry }: IInfo) => {
   const { name, flag, mainInfo, otherInfo, borders } = currentCountry;
   const neighbors = useNeighbors(borders);
 

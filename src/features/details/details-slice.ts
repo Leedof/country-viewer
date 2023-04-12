@@ -1,6 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { Country, Extra, Status } from 'types';
 
-export const loadCountryByName = createAsyncThunk(
+export const loadCountryByName = createAsyncThunk<
+  { data: Country[] },
+  string,
+  { state: { details: DetailsSlice }; extra: Extra }
+>(
   '@@details/load-country-by-name',
   (name, { extra: { client, api } }) => {
     return client.get(api.searchByCountry(name));
@@ -16,14 +21,21 @@ export const loadCountryByName = createAsyncThunk(
     },
   }
 );
-export const loadNeighborsByBorder = createAsyncThunk(
-  '@@details/load-neighbors',
-  (borders, { extra: { client, api } }) => {
-    return client.get(api.filterByCode(borders));
-  }
-);
+export const loadNeighborsByBorder = createAsyncThunk<
+  { data: Country[] },
+  string[],
+  { extra: Extra }
+>('@@details/load-neighbors', (borders, { extra: { client, api } }) => {
+  return client.get(api.filterByCode(borders));
+});
 
-const initialState = {
+export type DetailsSlice = {
+  status: Status;
+  error: string | null;
+  currentCountry: Country | null;
+  neighbors: Country[];
+};
+const initialState: DetailsSlice = {
   status: 'idle',
   error: null,
   currentCountry: null,
@@ -42,7 +54,7 @@ const detailsSlice = createSlice({
       })
       .addCase(loadCountryByName.rejected, (state, action) => {
         state.status = 'rejected';
-        state.error = action.payload || action.meta.error;
+        state.error = 'Error';
       })
       .addCase(loadCountryByName.fulfilled, (state, action) => {
         state.status = 'received';
@@ -54,9 +66,3 @@ const detailsSlice = createSlice({
 });
 
 export const detailsReducer = detailsSlice.reducer;
-
-//Selectors
-
-export const selectCurrentCountry = (state) => state.details.currentCountry;
-export const selectDetails = (state) => state.details;
-export const selectNeighbors = (state) => state.details.neighbors;
