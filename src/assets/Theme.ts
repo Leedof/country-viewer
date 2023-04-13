@@ -1,3 +1,5 @@
+import { DefaultTheme } from 'styled-components';
+
 const typography = {
   family: 'Nunito Sans',
   fs: {
@@ -35,5 +37,15 @@ const dark = {
   shadow: 'rgba(245, 245, 245, 0.2) 0 0 8px',
 };
 
-export const lightTheme = Object.assign({}, light, typography, graphics);
-export const darkTheme = Object.assign({}, dark, typography, graphics);
+export const lightTheme: DefaultTheme = Object.assign(
+  {},
+  light,
+  typography,
+  graphics
+);
+export const darkTheme: DefaultTheme = Object.assign(
+  {},
+  dark,
+  typography,
+  graphics
+);
