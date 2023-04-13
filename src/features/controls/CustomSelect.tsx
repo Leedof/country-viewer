@@ -1,10 +1,23 @@
 import styled from 'styled-components';
-import Select from 'react-select';
+import Select, { OptionProps, Props } from 'react-select';
+import { Regions } from 'types';
+import { CSSProperties } from 'react';
 
-export const CustomSelect = styled(Select).attrs(({ theme }) => ({
+export type RegionOption =
+  | {
+      value: Regions;
+      label: Regions;
+    }
+  | '';
+
+const MySelect = (props: Props<RegionOption, false>) => {
+  return <Select {...props} />;
+};
+
+export const CustomSelect = styled(MySelect).attrs(({ theme }) => ({
   styles: {
-    control: (provided) => ({
-      ...provided,
+    control: (base: CSSProperties) => ({
+      ...base,
       backgroundColor: theme.colors.uiBase,
       color: theme.colors.text,
       borderRadius: theme.radius,
@@ -13,8 +26,8 @@ export const CustomSelect = styled(Select).attrs(({ theme }) => ({
       boxShadow: theme.shadow,
       height: '50px',
     }),
-    option: (provided, state) => ({
-      ...provided,
+    option: (base: CSSProperties, state: OptionProps<{}>) => ({
+      ...base,
       cursor: 'pointer',
       color: theme.colors.text,
       backgroundColor: state.isSelected
