@@ -1,10 +1,10 @@
 import { Header } from './components/Header';
 import { Main } from './components/Main';
 import {
-  createBrowserRouter,
   createRoutesFromElements,
   Route,
   Outlet,
+  createHashRouter,
 } from 'react-router-dom';
 //Pages
 import { Home } from './pages/Home';
@@ -31,7 +31,7 @@ function App() {
   );
 }
 
-export const router = createBrowserRouter(
+export const router = createHashRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<Home />} />
