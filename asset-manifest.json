@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/country-viewer/static/css/main.59da7b3a.css",
+    "main.js": "/country-viewer/static/js/main.44981d5c.js",
+    "index.html": "/country-viewer/index.html",
+    "main.59da7b3a.css.map": "/country-viewer/static/css/main.59da7b3a.css.map",
+    "main.44981d5c.js.map": "/country-viewer/static/js/main.44981d5c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.59da7b3a.css",
+    "static/js/main.44981d5c.js"
+  ]
+}
