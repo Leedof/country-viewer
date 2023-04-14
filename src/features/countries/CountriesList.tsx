@@ -4,6 +4,7 @@ import { useCountries } from './use-countries';
 import { List } from 'components/List';
 import { Card } from 'components/Card';
 import { CountryInfo } from 'types';
+import { Loader } from 'components/Loader';
 
 export const CountriesList = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export const CountriesList = () => {
   return (
     <>
       {error && <h2>Can't fetch data</h2>}
-      {status === 'loading' && <h2>Loading...</h2>}
+      {status === 'loading' && <Loader />}
 
       {status === 'received' && (
         <List>

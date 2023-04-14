@@ -21,6 +21,7 @@ declare module 'styled-components' {
       text: string;
       bg: string;
       uiBase: string;
+      altBase: string;
     };
     shadow: string;
   }
